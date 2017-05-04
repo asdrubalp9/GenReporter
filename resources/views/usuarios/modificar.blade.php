@@ -12,7 +12,7 @@
 
 <div class="row">    
         <div class="page-header">
-            <h1>Crear Usuario</h1>
+            <h1>Modificar Usuario</h1>
       </div>
 </div>
 
@@ -21,7 +21,7 @@
         <div class="panel panel-default">
             
             <div class="panel-body">
-                {!! Form::open( ['route'=> 'users.store','method'=>'POST', 'data-parsley-validate'=>''] ) !!}
+                {!! Form::model( $user, ['route'=> ['users.update', $user->id],'method'=>'PUT'] ) !!}
 
                     {!! Form::label('name', 'Nombres: ') !!}
                     {!! Form::text('name', null, ['class'=> 'form-control', 'required'=>'']) !!}
@@ -30,9 +30,11 @@
                     {!! Form::label('telefono', 'Telefono: ') !!}
                     {!! Form::number('telefono', null, ['class'=> 'form-control']) !!}
                     {!! Form::label('email', 'Email: ') !!}
-                    {!! Form::email('email', null, ['class'=> 'form-control','required'=>'']) !!}
+                    {!! Form::email('email', null, ['class'=> 'form-control','required'=>'', 'disabled'=> 'true']) !!}
+                    {!! Form::hidden('email', null, ['class'=> 'form-control','required'=>'']) !!}
                     {!! Form::label('login', 'Login: ') !!}
-                    {!! Form::text('login', null, ['class'=> 'form-control','required'=>'']) !!}
+                    {!! Form::text('login', null, ['class'=> 'form-control','required'=>'','null', 'disabled'=> 'true']) !!}
+                    {!! Form::hidden('login', null, ['class'=> 'form-control','required'=>'','null']) !!}
                     {!! Form::label('password', 'Contraseña: ') !!}
                     {!! Form::text('password', null, ['class'=> 'form-control','required'=>'']) !!}
                     <!--
@@ -41,8 +43,18 @@
                     -->
                     {!! Form::label('foto', 'Foto: ') !!}
                     {!! Form::file('image'); !!}
+                    
                     <br>
-                    {!! Form::submit('Crear Usuario', ['class'=>'btn btn-block btn-primary'])  !!}
+                    <div class="row">
+                        <div class="col-sm-6">
+                            {!! Form::submit('Modificar', ['class'=>'btn btn-block btn-primary'])  !!}
+                        </div>
+                        <div class="col-sm-6">
+                            {!! Html::linkRoute('users.show', 'Cancelar', array($user->id), array('class' => 'btn btn-danger btn-block')) !!}    
+                        </div>
+                    </div>
+                    
+                    
                 {!! Form::close() !!}
             </div>
           </div>

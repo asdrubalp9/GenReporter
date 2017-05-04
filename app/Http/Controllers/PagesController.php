@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 class PagesController extends Controller{
     
-    public function dashboard(){
-        return view('Dashboard');
-    }
+    
     public function contact(){
         return view('contact');
     }
@@ -16,8 +14,7 @@ class PagesController extends Controller{
     public function crearReporte(){
         return view('reportes.crear');
     }
-    public function crearUsuario(){
-        return view('usuarios.crear');
-    }
+
+    
     
 }

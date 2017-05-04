@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Crear Usuario')
+@section('title', 'Crear Sitio')
 
 @section('stylesheets')
 
@@ -12,7 +12,7 @@
 
 <div class="row">    
         <div class="page-header">
-            <h1>Crear Usuario</h1>
+            <h1>Crear Sitio</h1>
       </div>
 </div>
 

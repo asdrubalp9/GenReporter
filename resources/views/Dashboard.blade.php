@@ -11,8 +11,10 @@
 </div>
 <div class="row">
     <div class="col-sm-4">
-        <a href="#" style="margin-top: 8px;" class="btn btn-block btn-primary">Crear Reporte <span class="glyphicon glyphicon-book"></span> </a>
-        <a href="#" class="btn btn-block btn-primary">Crear Usuario <span class="glyphicon glyphicon-user"></span> </a>
+        {!! Html::linkRoute('DashBoard', 'Crear Reporte',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
+        {!! Html::linkRoute('users.create', 'Crear Usuario',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
+        {!! Html::linkRoute('DashBoard', 'Crear Sitio',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
+        
     </div>
     <div class="col-sm-8">
         <div class="panel panel-info">
@@ -36,13 +38,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Asdrubal Perez</td>
-                            <td>123123123</td>
-                            <td>Un Sitio</td>
-                            <td></td>
-
-                        </tr>
+                            @foreach($users as $user)
+                                <tr>
+                                    <td> {{ $user->name }} </td>
+                                    <td> {{ $user->telefono }} </td>
+                                    <td>Un Sitio</td>
+                                    <td> <img src="..." width="50px" heigt="50px" /></td>
+                                </tr>
+                            @endforeach
                     </tbody>
                 </table>
         </div>
