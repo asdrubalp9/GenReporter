@@ -11,10 +11,9 @@
 </div>
 <div class="row">
     <div class="col-sm-4">
-        {!! Html::linkRoute('DashBoard', 'Crear Reporte',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
-        {!! Html::linkRoute('users.create', 'Crear Usuario',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
-        {!! Html::linkRoute('DashBoard', 'Crear Sitio',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
-        
+        {!! Html::linkRoute('DashBoard', 'Crear Reporte',null, ['class'=> 'btn btn-block btn-primary']  ) !!}     
+        {!! Html::linkRoute('sitios.create', 'Crear Sitio',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
+        <a href="/usuarios/crear" class="btn btn-block btn-primary">Crear Usuario <span class="glyphicon glyphicon-user"></span> </a>
     </div>
     <div class="col-sm-8">
         <div class="panel panel-info">

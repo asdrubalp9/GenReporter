@@ -1,6 +1,6 @@
 @extends('main')
 
-@section('title', 'Crear Usuario')
+@section('title', 'Crear Empresas')
 
 @section('stylesheets')
 
@@ -12,7 +12,7 @@
 
 <div class="row">    
         <div class="page-header">
-            <h1>Crear Usuario</h1>
+            <h1>Crear Empresas</h1>
       </div>
 </div>
 
@@ -21,30 +21,28 @@
         <div class="panel panel-default">
             
             <div class="panel-body">
-                {!! Form::open( ['route'=> 'users.store','method'=>'POST', 'data-parsley-validate'=>''] ) !!}
+                {!! Form::open( ['route'=> 'empresas.store', 'method'=>'PUT', 'data-parsley-validate'=>''] ) !!}
 
-                    {!! Form::label('name', 'Nombres: ') !!}
+                    {!! Form::label('name', 'Nombre de la empresa: ') !!}
                     {!! Form::text('name', null, ['class'=> 'form-control', 'required'=>'']) !!}
-                    {!! Form::label('lastName', 'Apellidos: ') !!}
-                    {!! Form::text('lastName', null, ['class'=> 'form-control','required'=>'']) !!}
+                    
                     {!! Form::label('telefono', 'Telefono: ') !!}
-                    {!! Form::number('telefono', null, ['class'=> 'form-control']) !!}
+                    {!! Form::number('telefono', null, ['class'=> 'form-control', 'required'=>'']) !!}
+
                     {!! Form::label('email', 'Email: ') !!}
                     {!! Form::email('email', null, ['class'=> 'form-control','required'=>'']) !!}
-                    {!! Form::label('login', 'Login: ') !!}
-                    {!! Form::text('login', null, ['class'=> 'form-control','required'=>'']) !!}
+
+                    {!! Form::label('direccion', 'Direccion: ') !!}
+                    {!! Form::text('direccion', null, ['class'=> 'form-control','required'=>'']) !!}
+                    
                     {!! Form::label('password', 'Contraseña: ') !!}
                     {!! Form::text('password', null, ['class'=> 'form-control','required'=>'']) !!}
-                    <!--
-                    {!! Form::label('claves', 'Sitios: ') !!}
-                    {!! Form::select('size', ['L' => 'Large', 'S' => 'Small'], null, ['class' => 'form-control'], ['multiple' => true]) !!}
-                    -->
-                    {!! Form::label('foto', 'Foto: ') !!}
-                    {!! Form::file('image'); !!}
+                    
+                    
                     <br>
                     <div class="row">
                         <div class="col-sm-6">
-                            {!! Form::submit('Crear Usuario', ['class'=>'btn btn-block btn-primary'])  !!}
+                            {!! Form::submit('Crear Empresa', ['class'=>'btn btn-block btn-primary'])  !!}
                         </div>
                         <div class="col-sm-6">
                             <a href="{{ route('users.index') }}" class="btn btn-block btn-danger">Cancelar</a>

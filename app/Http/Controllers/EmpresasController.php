@@ -4,11 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Session;
-use App\User;
 use App\Empresa;
+use Session;
 
-class UserController extends Controller
+class EmpresasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,10 +16,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        
-        //$users = new User;
-        $users = User::all();
-        return view('usuarios.index')->withUsers($users);
+        //
+        $empresas = Empresa::orderby('id','desc')->Paginate(5);
+        return view('empresas.index')->withEmpresas($empresas);
     }
 
     /**
@@ -30,8 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        
-        return view('usuarios.crear');
+        return view('empresas.crear');
     }
 
     /**
@@ -44,24 +41,25 @@ class UserController extends Controller
     {
         $this->validate($request, array(
             'name'          => 'required|min:2|max:255',
-            'lastName'      => 'required|min:2|max:255',
+            'telefono'      => 'required|min:2|max:255',
             'email'         => 'required|email|min:2|max:255',
             'password'      => 'required|min:2|alpha_num'
             
         ));
 
-        $user = new User;
+        $empresa = new Empresa;
 
-        $user -> name       = $request->name;
-        $user -> lastName   = $request->lastName;
-        $user -> email      = $request->email;
-        $user -> password   = $request->password;
-        $user -> telefono   = $request->telefono;
+        $empresa -> name       = $request->name;
+        $empresa -> telefono   = $request->telefono;
+        $empresa -> email      = $request->email;
+        $empresa -> direccion  = $request->direccion;
+        $empresa -> password   = $request->password;
         
-        $user -> save();
-        Session::flash('success', 'Se ha agregado el usuario '.$request->name.' '.$request->lastName);
-        return redirect()->route('users.show', $user->id );
-
+        
+        $empresa -> save();
+        Session::flash('success', 'Se ha agregado la empresa '.$request->name );
+        return redirect()->route('empresas.show', $empresa->id );
+        
     }
 
     /**
@@ -72,8 +70,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('usuarios.ver')->withUser($user);
+        //
+        $empresa = Empresa::find($id);
+
+        return view('empresas.ver')->withEmpresa($empresa);
+
     }
 
     /**
@@ -84,9 +85,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
+        //
+        $empresa = Empresa::find($id);
 
-        return view('usuarios.modificar')->withUser($user);
+        return view('empresas.modificar')->withEmpresa($empresa);
     }
 
     /**
@@ -98,34 +100,34 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
+        //
+        $empresa = Empresa::find($id);
         //dd($request);
-        if( $request->email === $user->email && $request->email === $user->email ){
+        if( $request->email === $empresa->email ){
             
             $this->validate($request, array(
                 'name'          => 'required|min:2|max:255',
-                'lastName'      => 'required|min:2|max:255',
+                'Direccion'      => 'required|min:2|max:255',
+                'telefono'      => 'required|min:2|max:255',
                 'password'      => 'required|min:2|alpha_num'
             
             ));
 
-            $user -> name       = $request->name;
-            $user -> lastName   = $request->lastName;
-            $user -> password   = $request->password;
-            $user -> telefono   = $request->telefono;    
-            $user -> save();
+            $empresa -> name       = $request->name;
+            $empresa -> Direccion   = $request->Direccion;
+            $empresa -> password   = $request->password;
+            $empresa -> telefono   = $request->telefono;    
+            $empresa -> save();
             
             Session::flash('success', 'Se han guardado los cambios');
 
-            return redirect()->route('users.show', $user->id);
+            return redirect()->route('empresas.show', $empresa->id);
         
         
         }else{
             Session::flash('danger', 'el correo o el Usurio no pueden ser cambiado');
             return redirect()->route('users.show', $user->id);
         }
-        
-
     }
 
     /**
