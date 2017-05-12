@@ -9,11 +9,20 @@ use Session;
 
 class EmpresasController extends Controller
 {
+
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
+
+       /*  
+    public function __construct()
+    {
+        $this->middleware('auth:empresa');
+    }
+    //*/
     public function index()
     {
         //
@@ -30,6 +39,8 @@ class EmpresasController extends Controller
     {
         return view('empresas.crear');
     }
+
+    
 
     /**
      * Store a newly created resource in storage.
@@ -48,12 +59,14 @@ class EmpresasController extends Controller
         ));
 
         $empresa = new Empresa;
+        
+        $pass= $request->password;
 
         $empresa -> name       = $request->name;
         $empresa -> telefono   = $request->telefono;
         $empresa -> email      = $request->email;
         $empresa -> direccion  = $request->direccion;
-        $empresa -> password   = $request->password;
+        $empresa -> password   = bcrypt($pass);
         
         
         $empresa -> save();

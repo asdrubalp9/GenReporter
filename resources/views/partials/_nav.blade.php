@@ -14,20 +14,48 @@
             <li class="{{ Request::is('/') ? "active" : "" }}" ><a href="/usuarios">Usuarios</a></li>
             <li class="{{ Request::is('/Reportes') ? "active" : "" }}" ><a href="/reportes">Reportes</a></li>
             <li class="{{ Request::is('/Seguimientos') ? "active" : "" }}" ><a href="/seguimientos">Seguimientos</a></li>
+
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                  Hola Fulano!
-                  <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
-              </a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Empresas <span class="caret"></span></a>
               <ul class="dropdown-menu">
-              <li><a href="#">Modificar Perfil</a></li>
-                <li><a href="#">Cerrar Sesion</a></li>
-                <!-- 
-                  <li role="separator" class="divider"></li>
-                  <li class="dropdown-header">Nav header</li>
-                  <li><a href="#">Separated link</a></li>
-                  <li><a href="#">One more separated link</a></li>
-                -->
+                <li><a href="{{ route('empresas.ingresar') }}">Ingresar</a></li>
+                <li><a href="{{ route('empresas.create') }}">Registrarse</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Salir</a></li>
+              </ul>
+            </li>
+            
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Usuarios <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Ingresar</a></li>
+                
+                <li role="separator" class="divider"></li>
+               
+                <li><a href="#">Salir</a></li>
+              </ul>
+            </li>
+            
+            @if (Route::has('empresas.ingresar'))                
+                    @if (Auth::check())
+                        <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                          Hola Fulano!
+                          <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                        <li><a href="#">Modificar Perfil</a></li>
+                        <li><a href="#">Cerrar Sesion</a></li>
+                    @else
+                        <li class="{{ Request::is('/ingresar') ? "active" : "" }}" >
+                          <a href="{{ route('empresas.ingresar') }}">Login</a>
+                        </li>            
+                        <li class="{{ Request::is('/Registrarse') ? "active" : "" }}" >
+                          <a href="#">Registrarse</a>
+                        </li>
+                    @endif
+            @endif
+            
               </ul>
             </li>
           </ul>
