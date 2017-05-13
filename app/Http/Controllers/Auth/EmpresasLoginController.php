@@ -24,9 +24,7 @@ class EmpresasLoginController extends Controller {
     }
     
     public function login(Request $request){
-        
-        
-        
+            
         $this->validate($request, [
             'email'     => 'required|email',
             'password'  =>'required|min:6'
@@ -42,4 +40,6 @@ class EmpresasLoginController extends Controller {
         return redirect()->back()->withInput($request->only('email','remember') );
         // */   
     } 
+
+    
 }

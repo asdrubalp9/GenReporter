@@ -18,11 +18,16 @@ Route::prefix('usuarios')-> group(function(){
 
 
 /////SITIOS/LUGARES///
-Route::get('/sitios/crear', 'SitiosController@create')->name('sitios.create');
+Route::prefix('sitios')->group(function(){
+    Route::get('/crear', 'SitiosController@create')->name('sitios.create');
+    Route::post('/crear', 'SitiosController@store')->name('sitios.store');
+    Route::get('/ver/{id?}', 'SitiosController@show')->name('sitios.show');
+});
+
+
 
 
 ////EMPRESAS
-
 Route::prefix('empresas')->group(function(){
     //Hacer dashboard de empresas
     Route::get('/crear', 'EmpresasController@create')->name('empresas.create');
@@ -32,8 +37,10 @@ Route::prefix('empresas')->group(function(){
     Route::put('/actualizar/{id?}', 'EmpresasController@update')->name('empresas.update');
     Route::get('/ingresar', 'Auth\EmpresasLoginController@showLoginForm')->name('empresas.ingresar');
     Route::post('/ingresar', 'Auth\EmpresasLoginController@login')->name('empresas.ingresar.submit');
+    
     Route::get('/', 'EmpresasController@index')->name('empresas.index');
 });
 
 
 Route::get('/home', 'HomeController@index')->name('home');
+
