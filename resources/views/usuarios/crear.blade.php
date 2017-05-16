@@ -24,10 +24,9 @@
                 {!! Form::open( ['route'=> 'users.store','method'=>'POST', 'data-parsley-validate'=>''] ) !!}
 
                     {!! Form::hidden('empresa_id', Auth::guard('empresa')->user()->id ) !!}
-                    {!! Form::label('name', 'Nombres: ') !!}
+                    {!! Form::label('name', 'Nombres y Apellidos: ') !!}
                     {!! Form::text('name', null, ['class'=> 'form-control', 'required'=>'']) !!}
-                    {!! Form::label('lastName', 'Apellidos: ') !!}
-                    {!! Form::text('lastName', null, ['class'=> 'form-control','required'=>'']) !!}
+                    
                     {!! Form::label('telefono', 'Telefono: ') !!}
                     {!! Form::number('telefono', null, ['class'=> 'form-control']) !!}
                     {!! Form::label('email', 'Email: ') !!}
@@ -40,8 +39,14 @@
                     {!! Form::label('empresas', 'Sitios asignados') !!}
                     <hr>
                     @foreach($sitios as $sitio) 
-                        {!! Form::label('empresas', $sitio->name) !!}
-                        {!! Form::checkbox('empresas', $sitio->value ) !!}
+                        <!-- {{ Form::label('label', $sitio->name) }} 
+                        {{ Form::checkbox('lugar_id[]', $sitio->id) }}-->
+                        
+                        <label class="checkbox-inline">
+                            <input type="checkbox" name="lugar_id" value="{{ $sitio->id }}">
+                            {{ $sitio->name }}
+                        </label>
+
 
                     @endforeach
                     <hr>
@@ -53,7 +58,7 @@
                             {!! Form::submit('Crear Usuario', ['class'=>'btn btn-block btn-primary'])  !!}
                         </div>
                         <div class="col-sm-6">
-                            <a href="{{ route('users.index') }}" class="btn btn-block btn-danger">Cancelar</a>
+                            <a href="{{ route('empresas.index') }}" class="btn btn-block btn-danger">Cancelar</a>
                         </div>
                     </div>
                     

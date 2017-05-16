@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Auth;
+use Session;
+use App\User;
 use App\Empresa;
 use App\Lugar;
-use App\User;
-use Session;
+
 
 class EmpresasController extends Controller
 {
@@ -27,8 +29,10 @@ class EmpresasController extends Controller
     //*/
     public function index()
     {
-        
-        $sitios = Lugar::orderby('id','desc')->Paginate(5);
+
+        $var = Auth::guard('empresa')->user()->id ;
+        $sitios = Lugar::where('empresa_id', '=', $var )->get(); //buscar sitios relacionados
+        //$sitios = Lugar::orderby('id','desc')->Paginate(5);
         $users = User::orderby('id','desc')->Paginate(5);
         // */
         return view('empresas.index')->withSitios($sitios)->withUsers($users);
@@ -158,45 +162,8 @@ class EmpresasController extends Controller
     {
         //
     }
-    /*
-    public function createUser(){
-
-        $empresas = Empresa::all();
-        $sitios = Lugar::all(); //buscar sitios relacionados
-        return view('usuarios.crear')->withEmpresas($empresas)->withSitios($sitios);
-
-    }
-    */
-    public function storeUser(Request $request){
-
-        $this->validate($request, array(
-            'name'          => 'required|min:2|max:255',
-            'lastName'      => 'required|min:2|max:255',
-            'email'         => 'required|email|min:2|max:255',
-            'password'      => 'required|min:2|alpha_num'
-            
-        ));
-
-        $user = new User;
-
-        $user -> name       = $request->name;
-        $user -> lastName   = $request->lastName;
-        $user -> email      = $request->email;
-        $user -> password   = $request->password;
-        $user -> telefono   = $request->telefono;
-        
-        $user -> save();
-        Session::flash('success', 'Se ha agregado el usuario '.$request->name.' '.$request->lastName);
-        return redirect()->route('users.show', $user->id );
-    }
-    public function showUser($id){
-        $user = User::find($id);
-        return view('usuarios.ver')->withUser($user);
-    }
-    public function editUser($id){
-        $user = User::find($id);
-        return view('usuarios.modificar')->withUser($user);
-    }
+    
+    
 
 
 }

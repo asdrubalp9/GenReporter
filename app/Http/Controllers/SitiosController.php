@@ -40,6 +40,7 @@ class SitiosController extends Controller
      */
     public function store(Request $request)
     {
+        
         //
         $this->validate($request, array(
             'name'          => 'required|min:2|max:255',

@@ -7,9 +7,16 @@ use Illuminate\Http\Request;
 use Session;
 use App\User;
 use App\Empresa;
+use App\Lugar;
+use Auth;
 
 class UserController extends Controller
 {
+
+    public function __construct(){
+        $this -> middleware('auth:empresa');
+        //$this->middleware('auth:empresa',['except'=>'create','store']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -28,22 +35,66 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function createUser(){
         
-        //return view('usuarios.crear');
+        
+        $sitios = Lugar::where('empresa_id', '=', Auth::guard('empresa')->user()->id )->get(); //buscar sitios relacionados
+
+        return view('usuarios.crear')->withSitios($sitios);
+
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
+    
+    public function storeUser(Request $request){
         
+        //dd($request);
+        
+        $this->validate($request, array(
+            'name'          => 'required|min:2|max:255',
+            'email'         => 'required|email|min:2|max:255',
+            'login'         => 'required|min:2|max:20',
+            'password'      => 'required|min:2|alpha_num'
+            
+        ));
 
+        $user = new User;
+
+        $user -> name       = $request->name;
+        
+        $user -> email      = $request->email;
+        $user -> password   = $request->password;
+        $user -> telefono   = $request->telefono;
+        $user -> login      = $request->login;
+        $user -> empresa_id = $request->empresa_id;
+        
+        $user -> save();
+
+        $user -> lugars()->sync( $request->sitios, false );
+        
+        /*
+                        if (!empty($request->sitios)){
+                            $sitio = new Lugar;
+                            $i= 0;
+                            foreach( $request->sitios as $lugar ){
+                                $sitio -> lugar_id = $lugar[$i];
+                                echo $lugar[$i];
+                                //$sitio -> user_id = $user->id;
+                                $sitio->save();
+                                $i++;
+                            }
+                        }
+        */
+        
+        Session::flash('success', 'Se ha agregado el usuario '.$request->name.' '.$request->lastName);
+
+        return redirect()->route('empresas.index');
+    }
+    public function showUser($id){
+        $user = User::find($id);
+        return view('usuarios.ver')->withUser($user);
+    }
+    public function editUser($id){
+        $user = User::find($id);
+        return view('usuarios.modificar')->withUser($user);
     }
 
     /**

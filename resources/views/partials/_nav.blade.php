@@ -32,7 +32,7 @@
                         </a>
                         <ul class="dropdown-menu">
                           <li><a href="{{ route('empresas.ingresar') }}">Ingresar</a></li>
-                          <li><a href="">Registrarse</a></li>
+                          <li><a href="{{ route('empresas.create') }}">Registrarse</a></li>
                         </ul>
                     @endif
               @endif

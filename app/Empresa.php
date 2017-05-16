@@ -13,10 +13,10 @@ class Empresa extends Model implements AuthenticatableContract
     protected $guard = 'empresa';
     //
     
-    public function Lugar(){
+    public function Lugares(){
         return $this->hasMany('App\Lugar');
     }
-    public function User(){
+    public function Users(){
         return $this->hasMany('App\User');
     }
     /*

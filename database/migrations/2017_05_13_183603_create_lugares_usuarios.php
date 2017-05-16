@@ -16,7 +16,7 @@ class CreateLugaresUsuarios extends Migration
         Schema::create('Lugares_Usuarios', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('lugar_id');
-            $table->integer('usuarioid');
+            $table->integer('user_id');
             $table->integer('activo')->default('1');
             $table->timestamps();
             

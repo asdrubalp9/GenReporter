@@ -58,7 +58,7 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" style="margin-top:20px;">
     <div class="col-sm-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
@@ -95,7 +95,7 @@
             <div class="panel-heading">
                 <h3 class="panel-title">Ultimos Reportes</h3>
             </div>
-                <table class=" table-responsive">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>ID reporte</th>
@@ -121,12 +121,12 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-sm-4">
+        <div class="col-sm-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Ultimos Seguimientos</h3>
             </div>
-                <table class="table-responsive">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Titulo del Reporte</th>
