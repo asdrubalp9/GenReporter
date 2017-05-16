@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CrearTablaLugares extends Migration
+class CreateTipoReporte extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,21 @@ class CrearTablaLugares extends Migration
      */
     public function up()
     {
-        Schema::create('Lugares', function (Blueprint $table) {
+        Schema::create('Tipo_Reporte', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('empresa_id');
-            $table->text('name');
-            $table->text('direccion');
+            $table->text('titulo');
+            $table->text('descripcion')->nullable();
             $table->timestamps();
         });
         /*
-        Schema::table('Lugares', function ($table){
-            $table->foreign('empresa_id')->references('id')->on('empresas')->onDelete('cascade');
+        Schema::table('Tipo_Reporte', function ($table){
+            $table->foreign('empresa_id')->references('id')->on('empresas');
         });
-        // */
+        */
     }
+
+    
 
     /**
      * Reverse the migrations.
@@ -34,6 +36,6 @@ class CrearTablaLugares extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('lugares');
+        Schema::dropIfExists('Tipo_Reporte');
     }
 }

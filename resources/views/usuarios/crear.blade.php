@@ -23,6 +23,7 @@
             <div class="panel-body">
                 {!! Form::open( ['route'=> 'users.store','method'=>'POST', 'data-parsley-validate'=>''] ) !!}
 
+                    {!! Form::hidden('empresa_id', Auth::guard('empresa')->user()->id ) !!}
                     {!! Form::label('name', 'Nombres: ') !!}
                     {!! Form::text('name', null, ['class'=> 'form-control', 'required'=>'']) !!}
                     {!! Form::label('lastName', 'Apellidos: ') !!}
@@ -35,10 +36,15 @@
                     {!! Form::text('login', null, ['class'=> 'form-control','required'=>'']) !!}
                     {!! Form::label('password', 'Contraseña: ') !!}
                     {!! Form::text('password', null, ['class'=> 'form-control','required'=>'']) !!}
-                    <!--
-                    {!! Form::label('claves', 'Sitios: ') !!}
-                    {!! Form::select('size', ['L' => 'Large', 'S' => 'Small'], null, ['class' => 'form-control'], ['multiple' => true]) !!}
-                    -->
+                    
+                    {!! Form::label('empresas', 'Sitios asignados') !!}
+                    <hr>
+                    @foreach($sitios as $sitio) 
+                        {!! Form::label('empresas', $sitio->name) !!}
+                        {!! Form::checkbox('empresas', $sitio->value ) !!}
+
+                    @endforeach
+                    <hr>
                     {!! Form::label('foto', 'Foto: ') !!}
                     {!! Form::file('image'); !!}
                     <br>

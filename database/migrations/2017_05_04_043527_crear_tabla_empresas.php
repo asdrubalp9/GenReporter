@@ -18,9 +18,10 @@ class CrearTablaEmpresas extends Migration
             $table->increments('id');
             $table->text('name',250);
             $table->text('telefono');
-            $table->text('Direccion');
+            $table->text('direccion');
             $table->text('email');
             $table->text('password');
+            $table->integer('activo');
             $table->timestamps();
         });
     }

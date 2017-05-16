@@ -27,6 +27,10 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
     public function Empresa(){
-        return $this-> belongsToMany('App\Empresa');
+        return $this-> belongsTo('App\Empresa');
     }
+    public function Sitio(){
+        return $this-> belongsTo('App\Sitio');
+    }
+
 }

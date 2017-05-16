@@ -14,7 +14,8 @@
 <div class="row">
     <div class="col-sm-4">
         {!! Html::linkRoute('DashBoard', 'Crear Reporte',null, ['class'=> 'btn btn-block btn-primary']  ) !!}     
-        {!! Html::linkRoute('sitios.create', 'Crear Sitio',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
+         {!! Html::linkRoute('sitios.create', 'Crear Sitio',null, ['class'=> 'btn btn-block btn-primary']  ) !!} 
+        
         <a href="/usuarios/crear" class="btn btn-block btn-primary">Crear Usuario <span class="glyphicon glyphicon-user"></span> </a>
     </div>
     <div class="col-sm-8">
@@ -39,19 +40,19 @@
                         </tr>
                     </thead>
                     <tbody>
-                            
+                            @foreach($users as $user)
                                 <tr>
                                     <td>
-                                        Nombre
+                                        {{ $user->name }}
                                     </td>
                                     <td>
-                                        Telefono
+                                        {{ $user->telefono }}
                                      
                                     </td>
                                     <td>Un Sitio</td>
                                     <td> <img src="..." width="50px" heigt="50px" /></td>
                                 </tr>
-                            
+                            @endforeach
                     </tbody>
                 </table>
         </div>
@@ -61,9 +62,40 @@
     <div class="col-sm-6">
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Ultimos Reportes</h3>
+                <h3 class="panel-title">Ultimos Sitios</h3>
             </div>
                 <table class="table">
+                    <thead>
+                        <tr>
+                            
+                            <th>Nombre</th>
+                            <th>Direccion</th>
+                            <th>Encargado</th>
+                            <th>Telefono</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($sitios as $sitio)
+                            <tr>
+                                
+                                <td>{{ $sitio-> name }}</td>
+                                <td>{{ substr(($sitio->direccion),0,20) }}...</td>
+                                <td> </td>
+                                <td> </td>
+                                <td><a href="#" class="btn btn-xs btn-primary" > <span class="glyphicon glyphicon-eye-open"></span> </a> </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    <div class="col-sm-6">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Ultimos Reportes</h3>
+            </div>
+                <table class=" table-responsive">
                     <thead>
                         <tr>
                             <th>ID reporte</th>
@@ -87,12 +119,14 @@
                 </table>
             </div>
         </div>
-    <div class="col-sm-6">
+    </div>
+    <div class="row">
+        <div class="col-sm-4">
         <div class="panel panel-primary">
             <div class="panel-heading">
                 <h3 class="panel-title">Ultimos Seguimientos</h3>
             </div>
-                <table class="table">
+                <table class="table-responsive">
                     <thead>
                         <tr>
                             <th>Titulo del Reporte</th>

@@ -16,7 +16,7 @@ class EmpresasLoginController extends Controller {
 
     public function __construct()
     {
-      $this->middleware('guest:empresa');
+      $this->middleware('guest:empresa',['except'=>'showLoginForm']);
     }
     //*/
     public function showLoginForm(){

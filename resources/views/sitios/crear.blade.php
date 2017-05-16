@@ -24,12 +24,12 @@
                 {!! Form::open( ['route'=> 'sitios.store','method'=>'POST', 'data-parsley-validate'=>''] ) !!}
 
                     {!! Form::hidden('Empresa_id', Auth::guard('empresa')->user()->id  ) !!}
-                    
+
                     {!! Form::label('name', 'Nombres: ') !!}
                     {!! Form::text('name', null, ['class'=> 'form-control', 'required'=>'']) !!}
                     
-                    {!! Form::label('direccion', 'Direccion: ') !!}
-                    {!! Form::text('direccion', null, ['class'=> 'form-control']) !!}
+                    {!! Form::label('Direccion', 'Direccion: ') !!}
+                    {!! Form::text('Direccion', null, ['class'=> 'form-control', 'required'=> '']) !!}
                     
                     <br>
                     {!! Form::submit('Crear Sitio', ['class'=>'btn btn-block btn-primary'])  !!}

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateUsersTable extends Migration
+class CreateTablaReportes extends Migration
 {
     /**
      * Run the migrations.
@@ -13,28 +13,24 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('Reportes', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
-            $table->string('email');
-            $table->string('login');
-            $table->string('password');
-            $table->string('telefono');
-            $table->integer('level')->default('2');
             $table->integer('empresa_id');
-            $table->string('foto_url')->nullable();
-            $table->rememberToken();
+            $table->integer('lugar_id');
+            $table->integer('tipo_reporte_id');
+            $table->text('titulo');
+            $table->text('descripcion');
             $table->timestamps();
+           
         });
         /*
-        Schema::table('users', function ($table){
+        Schema::table('Reportes', function ($table){
             $table->foreign('empresa_id')->references('id')->on('empresas');
+            $table->foreign('lugar_id')->references('id')->on('lugares');
+            $table->foreign('tipo_reporte_id')->references('id')->on('tipo_reporte');
         });
         */
     }
-        
-
-        
 
     /**
      * Reverse the migrations.
@@ -43,7 +39,8 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('Reportes');
     }
 }
+
 

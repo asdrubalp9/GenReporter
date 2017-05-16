@@ -45,7 +45,7 @@
                             {!! Form::submit('Crear Empresa', ['class'=>'btn btn-block btn-primary'])  !!}
                         </div>
                         <div class="col-sm-6">
-                            <a href="{{ route('users.index') }}" class="btn btn-block btn-danger">Cancelar</a>
+                            <a href="#" class="btn btn-block btn-danger">Cancelar</a>
                         </div>
                     </div>
                     

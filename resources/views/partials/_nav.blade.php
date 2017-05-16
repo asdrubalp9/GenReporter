@@ -14,14 +14,15 @@
             <li class="{{ Request::is('/') ? "active" : "" }}" ><a href="/usuarios">Usuarios</a></li>
             <li class="{{ Request::is('/Reportes') ? "active" : "" }}" ><a href="/reportes">Reportes</a></li>
             <li class="{{ Request::is('/Seguimientos') ? "active" : "" }}" ><a href="/seguimientos">Seguimientos</a></li>
-
             <li class="dropdown">
+
               @if (Route::has('empresas.ingresar'))                
                     @if (Auth::guard('empresa')->check() )
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                           Hola {{ Auth::guard('empresa')->user()->name }} !<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
+                          <li><a href="{{ route('empresas.index') }}">Panel de Control</a></li>
                           <li role="separator" class="divider"></li>
                           <li><a href="#">Salir</a></li>
                         </ul>
@@ -31,46 +32,29 @@
                         </a>
                         <ul class="dropdown-menu">
                           <li><a href="{{ route('empresas.ingresar') }}">Ingresar</a></li>
-                          <li><a href="{{ route('empresas.create') }}">Registrarse</a></li>
+                          <li><a href="">Registrarse</a></li>
                         </ul>
                     @endif
               @endif
               
-              
             </li>
-            
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                Usuarios <span class="caret"></span>
+                  Usuarios 
+                  <span class="caret"></span>
               </a>
               <ul class="dropdown-menu">
-                <li><a href="#">Ingresar</a></li>
-                
+                <li>
+                  <a href="#">
+                    Ingresar
+                  </a>
+                </li>
                 <li role="separator" class="divider"></li>
-               
                 <li><a href="#">Salir</a></li>
               </ul>
             </li>
             
-            @if (Route::has('empresas.ingresar'))                
-                    @if (Auth::check())
-                        <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                          Hola Fulano!
-                          <span class="glyphicon glyphicon-user"></span> <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                        <li><a href="#">Modificar Perfil</a></li>
-                        <li><a href="#">Cerrar Sesion</a></li>
-                    @else
-                        <li class="{{ Request::is('/ingresar') ? "active" : "" }}" >
-                          <a href="{{ route('empresas.ingresar') }}">Login</a>
-                        </li>            
-                        <li class="{{ Request::is('/Registrarse') ? "active" : "" }}" >
-                          <a href="#">Registrarse</a>
-                        </li>
-                    @endif
-            @endif
+            
             
               </ul>
             </li>

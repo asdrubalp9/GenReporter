@@ -31,7 +31,7 @@ class UserController extends Controller
     public function create()
     {
         
-        return view('usuarios.crear');
+        //return view('usuarios.crear');
     }
 
     /**
@@ -42,25 +42,7 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, array(
-            'name'          => 'required|min:2|max:255',
-            'lastName'      => 'required|min:2|max:255',
-            'email'         => 'required|email|min:2|max:255',
-            'password'      => 'required|min:2|alpha_num'
-            
-        ));
-
-        $user = new User;
-
-        $user -> name       = $request->name;
-        $user -> lastName   = $request->lastName;
-        $user -> email      = $request->email;
-        $user -> password   = $request->password;
-        $user -> telefono   = $request->telefono;
         
-        $user -> save();
-        Session::flash('success', 'Se ha agregado el usuario '.$request->name.' '.$request->lastName);
-        return redirect()->route('users.show', $user->id );
 
     }
 
@@ -72,8 +54,7 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::find($id);
-        return view('usuarios.ver')->withUser($user);
+        
     }
 
     /**
@@ -84,9 +65,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::find($id);
-
-        return view('usuarios.modificar')->withUser($user);
     }
 
     /**
