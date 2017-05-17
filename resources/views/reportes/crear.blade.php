@@ -18,12 +18,24 @@
                 {!! Form::open() !!}
                     <div class="row">
                         <div class="col-md-6">
-                            {!! Form::label('Lugar', 'Lugar: ') !!}
-                            {!! Form::select('lugar', ['test','test2'],null, ['class'=>'form-control']) !!}
+                            <label>
+                                Sitio
+                            </label>
+                            <select class="form-control">
+                                @foreach($sitios as $sitio)
+                                    <option value="{{ $sitio->id }} ">{{ $sitio->name }}</option>
+                                @endforeach    
+                            </select>
                         </div>
                         <div class="col-md-6">
-                            {!! Form::label('Tipo', 'Tipo: ') !!}
-                            {!! Form::select('Tipo', ['test','test2'], null,['class'=>'form-control']) !!}
+                            <label>
+                                Tipo de reporte
+                            </label>
+                            <select class="form-control">
+                                @foreach($tipos as $tipo)
+                                    <option value="{{ $tipo->id }} ">{{ $tipo->titulo }}</option>
+                                @endforeach    
+                            </select>
                         </div>
                     </div>
                     {!! Form::label('Titulo', 'Titulo: ') !!}

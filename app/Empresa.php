@@ -19,9 +19,10 @@ class Empresa extends Model implements AuthenticatableContract
     public function Users(){
         return $this->hasMany('App\User');
     }
-    /*
+
+    
     public function Tipo_Reportes(){
-        return $this->hasMany('App\Tipo_Reportes');
+        return $this->hasOne('App\TipoReporte','empresa_id');
     }
     // */
 }

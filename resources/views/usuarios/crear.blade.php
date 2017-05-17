@@ -43,7 +43,7 @@
                         {{ Form::checkbox('lugar_id[]', $sitio->id) }}-->
                         
                         <label class="checkbox-inline">
-                            <input type="checkbox" name="lugar_id" value="{{ $sitio->id }}">
+                            <input type="checkbox" name="lugar_id[]" value="{{ $sitio->id }}">
                             {{ $sitio->name }}
                         </label>
 

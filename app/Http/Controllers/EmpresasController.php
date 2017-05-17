@@ -9,6 +9,7 @@ use Session;
 use App\User;
 use App\Empresa;
 use App\Lugar;
+use App\TipoReporte;
 
 
 class EmpresasController extends Controller
@@ -31,11 +32,14 @@ class EmpresasController extends Controller
     {
 
         $var = Auth::guard('empresa')->user()->id ;
-        $sitios = Lugar::where('empresa_id', '=', $var )->get(); //buscar sitios relacionados
-        //$sitios = Lugar::orderby('id','desc')->Paginate(5);
-        $users = User::orderby('id','desc')->Paginate(5);
-        // */
-        return view('empresas.index')->withSitios($sitios)->withUsers($users);
+        
+        $sitios = Lugar::where('empresa_id', '=', $var )->Paginate(5);
+        
+        $users = User::where('empresa_id', '=', $var )->orderBy('id','DESC')->Paginate(5);
+        
+        $tiporeportes = TipoReporte::where('empresa_id', '=', $var )->orderBy('id','DESC')->Paginate(5);
+        
+        return view('empresas.index')->withSitios($sitios)->withUsers($users)->withTipos($tiporeportes);
     }
 
     /**

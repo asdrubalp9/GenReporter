@@ -68,21 +68,9 @@ class UserController extends Controller
         
         $user -> save();
 
-        $user -> lugars()->sync( $request->sitios, false );
+        $user -> Lugares()->sync( $request->lugar_id, false );
         
-        /*
-                        if (!empty($request->sitios)){
-                            $sitio = new Lugar;
-                            $i= 0;
-                            foreach( $request->sitios as $lugar ){
-                                $sitio -> lugar_id = $lugar[$i];
-                                echo $lugar[$i];
-                                //$sitio -> user_id = $user->id;
-                                $sitio->save();
-                                $i++;
-                            }
-                        }
-        */
+        
         
         Session::flash('success', 'Se ha agregado el usuario '.$request->name.' '.$request->lastName);
 

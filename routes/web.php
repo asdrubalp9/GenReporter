@@ -24,6 +24,12 @@ Route::prefix('sitios')->group(function(){
     Route::get('/ver/{id?}', 'SitiosController@show')->name('sitios.show');
 });
 
+Route::prefix('reportes')->group(function(){
+    Route::get('/crear', 'ReportesController@create')->name('reportes.create');
+    Route::get('/crear/tipo', 'ReportesController@createType')->name('reportes.createType');
+    Route::post('/crear/tipo', 'ReportesController@submitType')->name('reportes.submitType');
+});
+
 ////EMPRESAS
 Route::prefix('empresas')->group(function(){
     //Hacer dashboard de 

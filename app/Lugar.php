@@ -11,11 +11,15 @@ class Lugar extends Model
      protected $table = 'lugares';
 
      public function Lugares(){
-
         return $this-> belongsTo('App\Empresa');
     }
+    
     public function Users(){
-        
-        return $this-> belongsToMany('App\User','lugares_usuarios');
+        return $this-> hasMany('App\User','lugares_usuarios','lugar_id', 'user_id');
     }
+    /*
+    public function Reportes(){
+        return $this-> hasOne('App\Reporte','lugar_id');
+    }
+    // */
 }

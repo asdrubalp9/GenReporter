@@ -23,6 +23,14 @@
                         </a>
                         <ul class="dropdown-menu">
                           <li><a href="{{ route('empresas.index') }}">Panel de Control</a></li>
+                          <li><a href="{{ route('sitios.create') }}">Crear Sitio</a></li>
+                          <li>
+                            <a href="{{ route('users.create') }}">Crear Usuario</a>
+                          </li>
+                          <li><a href="#">Crear Reporte</a></li>
+                          <li><a href="#">Crear Seguimiento</a></li>
+                          <li><a href="#">Crear tipo de reporte</a></li>
+
                           <li role="separator" class="divider"></li>
                           <li><a href="#">Salir</a></li>
                         </ul>
